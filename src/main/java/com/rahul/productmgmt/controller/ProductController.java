@@ -18,7 +18,10 @@ import com.rahul.productmgmt.model.request.ProductUpdateRequest;
 import com.rahul.productmgmt.model.response.GeneralResponse;
 import com.rahul.productmgmt.service.ProductService;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
+@Tag(name = "Product Data Management", description = "For handling Product DB APIs")
 @RequestMapping(value = "/product")
 public class ProductController {
 

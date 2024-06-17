@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.rahul.productmgmt.client.ClientRestService;
 import com.rahul.productmgmt.model.response.RestPostById;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
+@Tag(name = "Client REST APIs", description = "For handling REST APIs")
 @RequestMapping(value = "/rest")
 public class ClientRestController {
 
