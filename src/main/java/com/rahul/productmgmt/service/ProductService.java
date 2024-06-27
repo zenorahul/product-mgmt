@@ -36,7 +36,7 @@ public class ProductService {
 		return response;
 	}
 
-	public GeneralResponse fetchProducts() {
+	public GeneralResponse viewAllProducts() {
 		ProductResponse response = new ProductResponse();
 		try {
 			List<Product> list = productRepository.findAll();
@@ -44,7 +44,6 @@ public class ProductService {
 			if (list != null) {
 				List<ProductList> productList = processList(list);
 				response.setProductList(productList);
-				LOGGER.info("List size:", list.size());
 			}
 			response.setStatus(ConstantVals.SUCCESS);
 
@@ -67,7 +66,6 @@ public class ProductService {
 		});
 
 		List<ProductList> uniquePL = pl.stream().distinct().collect(Collectors.toList());
-
 		return uniquePL;
 	}
 

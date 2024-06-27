@@ -36,7 +36,7 @@ public class ProductController {
 
 	@GetMapping("/viewproducts")
 	public ResponseEntity<GeneralResponse> viewProducts() throws Exception {
-		GeneralResponse response = productService.fetchProducts();
+		GeneralResponse response = productService.viewAllProducts();
 		return ResponseEntity.ok().body(response);
 	}
 
