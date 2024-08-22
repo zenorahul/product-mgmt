@@ -1,11 +1,14 @@
 package com.rahul.productmgmt.controller;
 
+import java.util.Optional;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,7 +38,7 @@ public class ProductController {
 	}
 
 	@GetMapping("/viewproducts")
-	public ResponseEntity<GeneralResponse> viewProducts() throws Exception {
+	public ResponseEntity<GeneralResponse> viewAllProducts() throws Exception {
 		GeneralResponse response = productService.viewAllProducts();
 		return ResponseEntity.ok().body(response);
 	}
@@ -45,6 +48,12 @@ public class ProductController {
 	public ResponseEntity<GeneralResponse> updateProduct(@Valid @RequestBody ProductUpdateRequest productUpdateReq)
 			throws Exception {
 		GeneralResponse response = productService.updateProduct(productUpdateReq);
+		return ResponseEntity.ok().body(response);
+	}
+
+	@GetMapping("/viewproduct/{id}")
+	public ResponseEntity<Optional<Product>> viewProductById(@PathVariable("id") int id) {
+		Optional<Product> response = productService.viewProductById(id);
 		return ResponseEntity.ok().body(response);
 	}
 }

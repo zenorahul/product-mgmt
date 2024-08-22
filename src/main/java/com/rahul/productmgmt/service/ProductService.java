@@ -2,6 +2,7 @@ package com.rahul.productmgmt.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.rahul.productmgmt.entity.Product;
+import com.rahul.productmgmt.exception.CustomProductException;
 import com.rahul.productmgmt.model.request.ProductUpdateRequest;
 import com.rahul.productmgmt.model.response.GeneralResponse;
 import com.rahul.productmgmt.model.response.ProductList;
@@ -85,5 +87,12 @@ public class ProductService {
 			response.setStatus(e.getMessage());
 		}
 		return response;
+	}
+
+	public Optional<Product> viewProductById(int id) {
+		Optional<Product> data = productRepository.findById(id);
+//		if(data==null)
+//			throw new CustomProductException("404","No data found for the given ID");
+		return data;
 	}
 }
